@@ -18,4 +18,4 @@ Ashley -- http://drive.google.com/open?id=0BwkFfhEuI6QSc0J3U3RHU1pROWs&authuser=
 
 Dennis -- https://drive.google.com/file/d/0Bye-qucHxw-rTmwxS0swYllQRmM/view?usp=sharing
 
-Jasmine -- https://www.dropbox.com/s/mjfgin8jjuec4j1/Over%20The%20Hurdles%20part%201-%20JM.tws?dl=0
+Jasmine -- https://www.dropbox.com/s/ojz9j7y78mmsttj/Over%20the%20Hurdles.html?dl=0
