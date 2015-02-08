@@ -17,3 +17,5 @@ Andrew -- https://www.dropbox.com/s/dnrvcp41ib4xpta/Take%20the%20Throne%200.1.ht
 Ashley -- http://drive.google.com/open?id=0BwkFfhEuI6QSc0J3U3RHU1pROWs&authuser=1
 
 Dennis -- https://drive.google.com/file/d/0Bye-qucHxw-rTmwxS0swYllQRmM/view?usp=sharing
+
+Jasmine -- https://www.dropbox.com/s/mjfgin8jjuec4j1/Over%20The%20Hurdles%20part%201-%20JM.tws?dl=0
