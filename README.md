@@ -56,3 +56,5 @@ Keiji -- https://googledrive.com/host/0B8yh2-Iuk2tJeng1VUt2amNwT3c/Keiji2DCharac
 Dennis -- https://drive.google.com/file/d/0Bye-qucHxw-rTlJtZ2lBSk8wX28/view?usp=sharing
 
 Orien -- https://drive.google.com/a/newschool.edu/file/d/0B--4uL4oMckhWnJBVktabk1oQkE/view?usp=sharing
+
+Ashley -- https://drive.google.com/file/d/0BwkFfhEuI6QSUEZBajFLUFV0dmc/view?usp=sharing
