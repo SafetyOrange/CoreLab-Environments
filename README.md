@@ -58,3 +58,5 @@ Dennis -- https://drive.google.com/file/d/0Bye-qucHxw-rTlJtZ2lBSk8wX28/view?usp=
 Orien -- https://drive.google.com/a/newschool.edu/file/d/0B--4uL4oMckhWnJBVktabk1oQkE/view?usp=sharing
 
 Ashley -- https://drive.google.com/file/d/0BwkFfhEuI6QSUEZBajFLUFV0dmc/view?usp=sharing
+
+Jasmine -- https://www.dropbox.com/s/4552b1foi2s98qr/Moving%20Girl_JM.zip?dl=0
