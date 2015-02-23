@@ -50,3 +50,5 @@ Jasmine -- https://www.dropbox.com/s/ygb88bapcu8sjbz/Homework%20%232.zip?dl=0
 ## Homework 3 - Make a character
 
 Andrew -- https://www.dropbox.com/s/59na7ju6tor68ei/Dimension%20Leaping%20Larry.zip?dl=0
+
+Dennis -- https://drive.google.com/file/d/0Bye-qucHxw-rTlJtZ2lBSk8wX28/view?usp=sharing
