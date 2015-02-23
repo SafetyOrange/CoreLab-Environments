@@ -51,4 +51,8 @@ Jasmine -- https://www.dropbox.com/s/ygb88bapcu8sjbz/Homework%20%232.zip?dl=0
 
 Andrew -- https://www.dropbox.com/s/59na7ju6tor68ei/Dimension%20Leaping%20Larry.zip?dl=0
 
+<<<<<<< HEAD
 Keiji -- https://googledrive.com/host/0B8yh2-Iuk2tJeng1VUt2amNwT3c/Keiji2DCharacter.zip
+=======
+Dennis -- https://drive.google.com/file/d/0Bye-qucHxw-rTlJtZ2lBSk8wX28/view?usp=sharing
+>>>>>>> c6d8fdab8e23a1b78874a8f239f559b7e78d75fc
