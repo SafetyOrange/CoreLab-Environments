@@ -76,3 +76,5 @@ Ashley -- (Dennis' character) https://drive.google.com/file/d/0BwkFfhEuI6QSbkRrZ
 Daniel -- (Simon's character) https://db.tt/l62wEopi
 
 Keiji -- (Andrew's character)  https://drive.google.com/file/d/0B8yh2-Iuk2tJLVNiR3U4VmZfWWM/view?usp=sharing
+
+Simon -- (Daniels character) https://www.dropbox.com/s/huxisn6so6yjfpt/bluehat.zip?dl=0 *going to resubmit
