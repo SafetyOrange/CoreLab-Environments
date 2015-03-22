@@ -3,22 +3,21 @@ using System.Collections;
 
 public class ShipMovement : MonoBehaviour {
 
-	float xSpeed;
-	float ySpeed;
-	bool firing;
-
-
-	// Use this for initialization
+	float xSpeed = 5;
+	float ySpeed = 0;
+	bool firing = false;
+	
 	void Start () {
 	}
-	
-	// Update is called once per frame
+
+
 	void Update () {
 		checkInput();
 	
 	}
 
 	void checkInput(){
+
 		//Check Movement
 		if( Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ){
 			transform.position = new Vector2(transform.position.x + xSpeed, transform.position.y);
