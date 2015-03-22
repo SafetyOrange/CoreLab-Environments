@@ -15,9 +15,7 @@ public class ShipMovement : MonoBehaviour {
 			Debug.Log ("not loaded");
 			yield return null;
 		}
-		xSpeed = GameManager.shipSpeed.x;
-		ySpeed = GameManager.shipSpeed.y;
-		Debug.Log (xSpeed);
+		speed = new Vector2 (GameManager.shipSpeed.x, GameManager.shipSpeed.y);
 	}
 
 	void Update () {
@@ -29,9 +27,9 @@ public class ShipMovement : MonoBehaviour {
 
 		//Check Movement
 		if( Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ){
-			transform.position = new Vector2(transform.position.x + speed.x, transform.position.y);
+			transform.position = new Vector3(transform.position.x - speed.x, transform.position.y, transform.position.z);
 		}else if( Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ){
-			transform.position = new Vector2(transform.position.x - speed.x, transform.position.y);
+			transform.position = new Vector3(transform.position.x + speed.x, transform.position.y, transform.position.z);
 		}
 
 		//Check for fire
