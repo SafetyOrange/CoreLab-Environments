@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	void Update () {
-	
+		transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y + velocity.y);
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
