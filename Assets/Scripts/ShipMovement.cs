@@ -3,8 +3,7 @@ using System.Collections;
 
 public class ShipMovement : MonoBehaviour {
 
-	float xSpeed = 5;
-	float ySpeed = 0;
+	Vector2 speed = new Vector2(5,0);
 	bool firing = false;
 	
 	void Start () {
@@ -20,11 +19,11 @@ public class ShipMovement : MonoBehaviour {
 
 		//Check Movement
 		if( Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ){
-			transform.position = new Vector2(transform.position.x + xSpeed, transform.position.y);
+			transform.position = new Vector2(transform.position.x + speed.x, transform.position.y);
 		}
 
 		else if( Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ){
-			transform.position = new Vector2(transform.position.x - xSpeed, transform.position.y);
+			transform.position = new Vector2(transform.position.x - speed.x, transform.position.y);
 		}
 
 		//Check for fire
