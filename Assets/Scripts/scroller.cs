@@ -11,7 +11,7 @@ public class scroller : MonoBehaviour {
 
 	private Renderer renderR;
 	// Use this for initialization
-	void Start () {
+	void Start () {	
 		renderR = GetComponent<MeshRenderer> ();
 	}
 	
