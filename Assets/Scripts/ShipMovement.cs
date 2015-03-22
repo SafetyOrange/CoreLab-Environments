@@ -8,8 +8,18 @@ public class ShipMovement : MonoBehaviour {
 	bool firing = false;
 	
 	void Start () {
+		StartCoroutine ("loadValues");
 	}
 
+	IEnumerator loadValues() {
+		while (GameManager.isLoaded == false) {
+			Debug.Log ("not loaded");
+			yield return null;
+		}
+		xSpeed = GameManager.shipSpeed.x;
+		ySpeed = GameManager.shipSpeed.y;
+		Debug.Log (xSpeed);
+	}
 
 	void Update () {
 		checkInput();
@@ -20,11 +30,11 @@ public class ShipMovement : MonoBehaviour {
 
 		//Check Movement
 		if( Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) ){
-			transform.position = new Vector2(transform.position.x + xSpeed, transform.position.y);
+			transform.position = new Vector3(transform.position.x - xSpeed, transform.position.y, transform.position.z);
 		}
 
 		else if( Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) ){
-			transform.position = new Vector2(transform.position.x - xSpeed, transform.position.y);
+			transform.position = new Vector3(transform.position.x + xSpeed, transform.position.y, transform.position.z);
 		}
 
 		//Check for fire
