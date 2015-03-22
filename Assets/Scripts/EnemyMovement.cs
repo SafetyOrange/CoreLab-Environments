@@ -2,21 +2,20 @@
 using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
-
+	//Enemy Variables
 	bool alive = false;
 	string type = "advance";
 	float xSpeed = 0;
 	float ySpeed = 5;
-	Vector2 currentSpeed = Vector2.zero;
+	float variance = Random.Range(0, Screen.height);
+
+	//External Variables
 	GameObject player;
-
-
-	// Use this for initialization
+	
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 
 		switch(type){
