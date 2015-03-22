@@ -3,8 +3,11 @@ using System.Collections;
 
 public class scroller : MonoBehaviour {
 
-	public float scrollspeed = .001f;
+	public float scrollspeedY = .001f;
+	public float scrollspeedX = 0;
 	private float yOffset = 0;
+	private float xOffset = 0;
+
 
 	private Renderer renderR;
 	// Use this for initialization
@@ -14,7 +17,8 @@ public class scroller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		renderR.material.SetTextureOffset ("_MainTex", new Vector2 (0, yOffset)); 
-		yOffset += scrollspeed;
+		renderR.material.SetTextureOffset ("_MainTex", new Vector2 (xOffset, yOffset)); 
+		yOffset += scrollspeedY;
+		xOffset += scrollspeedX;
 	}
 }
