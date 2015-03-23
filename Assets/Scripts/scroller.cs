@@ -13,6 +13,16 @@ public class scroller : MonoBehaviour {
 	// Use this for initialization
 	void Start () {	
 		renderR = GetComponent<MeshRenderer> ();
+		StartCoroutine ("loadValues");
+	}
+
+	IEnumerator loadValues() {
+		while (GameManager.isLoaded == false) {
+			yield return null;
+		}
+		scrollspeedX = GameManager.backgroundScrollSpeed.x;
+		scrollspeedY = GameManager.backgroundScrollSpeed.y;
+
 	}
 	
 	// Update is called once per frame
