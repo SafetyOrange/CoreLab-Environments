@@ -7,11 +7,11 @@ public class Projectile : MonoBehaviour {
 	Vector2 velocity = -Vector2.up;
 
 	void Start () {
-		Vector2 velocity = -Vector2.up * speed;
+
 	}
 
 	void Update () {
-		transform.position = new Vector2(transform.position.x + velocity.x, transform.position.y + velocity.y);
+		transform.position = new Vector3(transform.position.x + velocity.x * Time.deltaTime, transform.position.y + velocity.y * Time.deltaTime, transform.position.z);
 	}
 
 	void OnCollisionEnter2D(Collision2D coll){
