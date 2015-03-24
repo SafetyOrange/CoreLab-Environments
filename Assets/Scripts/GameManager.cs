@@ -14,6 +14,7 @@ public static class GameManager {
 		"backgroundScrollSpeed",
 		"shipSpeed",
 		"shipWrap",
+		"shipHealth",
 		"redProjectileVelocity",
 		"redProjectileGlowSpeed",
 		"redProjectileDamage",
@@ -22,6 +23,7 @@ public static class GameManager {
 	public static Vector2 backgroundScrollSpeed;
 	public static Vector2 shipSpeed;
 	public static bool shipWrap;
+	public static float shipHealth;
 
 	// --------------- // --------------- // --------------- Projectile Variables
 	public static Vector2 redProjectileVelocity;
@@ -66,6 +68,9 @@ public static class GameManager {
 				case "shipWrap":
 					shipWrap = bool.Parse (fileSplit [index + 1]);
 					break;
+				case "shipHealth":
+					shipHealth = float.Parse (fileSplit [index + 1]);
+					break;
 				case "redProjectileVelocity":
 					redProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
@@ -84,9 +89,7 @@ public static class GameManager {
 				}
 			} else {
 				Debug.Log ("Didn't find " + key + " in the file. Did a row of the spreadsheet get renamed?");
-				foreach (string st in fileSplit) {
-					Debug.Log (st);
-				}
+				//foreach (string st in fileSplit) { Debug.Log (st); }
 			}
 		}
 

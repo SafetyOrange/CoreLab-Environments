@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour {
 	public bool shotByEnemy = true; //used to determine whether the player shoots it or the enemies shoot it
 
 	SpriteRenderer SpriteRenderR;
+	float timePassed = 0;
 
 	void Start () {
 		SpriteRenderR = GetComponent<SpriteRenderer> ();
@@ -23,19 +24,20 @@ public class Projectile : MonoBehaviour {
 				SpriteRenderR.color.r,
 				SpriteRenderR.color.g,
 				SpriteRenderR.color.b,
-				(float) Math.Sin (Time.deltaTime) * 128 + 128);
+				(float) Math.Sin (timePassed) * .5f + .5f);
+			timePassed += Time.deltaTime * (float)Math.PI * glowSpeed;
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D coll){
+	void OnTriggerEnter2D(Collider2D coll){
 		if (shotByEnemy) {
 			if (coll.gameObject.tag == "Player") {
-				coll.gameObject.SendMessage ("hit");
+				coll.gameObject.SendMessage ("hit", damage);
 				Destroy (this.gameObject);
 			}
 		} else {
 			if (coll.gameObject.tag == "Enemy") {
-				coll.gameObject.SendMessage ("hit");
+				coll.gameObject.SendMessage ("hit", damage);
 				Destroy (this.gameObject);
 			}
 		}

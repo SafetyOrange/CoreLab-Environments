@@ -1,7 +1,8 @@
-backgroundScrollSpeed,0,0.001
-shipSpeed,1,1
-shipWrap,FALSE
-redProjectileVelocity,0.2,1
-redProjectileGlowSpeed,1,
+backgroundScrollSpeed,0,-0.002
+shipSpeed,10,10
+shipHealth,10,
+shipWrap,FALSE,
+redProjectileVelocity,0.2,-1
+redProjectileGlowSpeed,4,
 redProjectileDamage,5,
 redProjectileShotByEnemy,TRUE,

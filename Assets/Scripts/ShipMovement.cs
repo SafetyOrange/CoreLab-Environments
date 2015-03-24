@@ -6,6 +6,7 @@ public class ShipMovement : MonoBehaviour {
 	Vector2 speed = new Vector2(5,0);
 	bool firing = false;
 	bool wrapScreen = false;
+	float health = 1;
 	
 	void Start () {
 		StartCoroutine ("loadValues");
@@ -18,6 +19,7 @@ public class ShipMovement : MonoBehaviour {
 		}
 		speed = new Vector2 (GameManager.shipSpeed.x, GameManager.shipSpeed.y);
 		wrapScreen = GameManager.shipWrap;
+		health = GameManager.shipHealth;
 	}
 
 	void Update () {
@@ -53,6 +55,10 @@ public class ShipMovement : MonoBehaviour {
 
 	void fire(){
 
+	}
+	void hit( float damage ) {
+		health -= damage;
+		Debug.Log ("SHIP HIT! Health Left: " + health);
 	}
 
 }
