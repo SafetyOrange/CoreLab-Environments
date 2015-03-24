@@ -18,7 +18,11 @@ public static class GameManager {
 		"redProjectileVelocity",
 		"redProjectileGlowSpeed",
 		"redProjectileDamage",
-		"redProjectileShotByEnemy"
+		"redProjectileShotByEnemy",
+		"blueProjectileVelocity",
+		"blueProjectileGlowSpeed",
+		"blueProjectileDamage",
+		"blueProjectileShotByEnemy"
 	};
 	public static Vector2 backgroundScrollSpeed;
 	public static Vector2 shipSpeed;
@@ -30,6 +34,11 @@ public static class GameManager {
 	public static float redProjectileGlowSpeed;
 	public static float redProjectileDamage;
 	public static bool redProjectileShotByEnemy;
+
+	public static Vector2 blueProjectileVelocity;
+	public static float blueProjectileGlowSpeed;
+	public static float blueProjectileDamage;
+	public static bool blueProjectileShotByEnemy;
 
 
 	public static void init () {
@@ -82,6 +91,18 @@ public static class GameManager {
 					break;
 				case "redProjectileShotByEnemy":
 					redProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
+					break;
+				case "blueProjectileVelocity":
+					blueProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					break;
+				case "blueProjectileGlowSpeed":
+					blueProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
+					break;
+				case "blueProjectileDamage":
+					blueProjectileDamage = float.Parse (fileSplit [index + 1]);
+					break;
+				case "blueProjectileShotByEnemy":
+					blueProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
 					break;
 				default:
 					Debug.Log (key + " didn't find this case in switch, <3 B Gamemanager.cs");

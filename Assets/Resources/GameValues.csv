@@ -6,3 +6,7 @@ redProjectileVelocity,0.2,-1
 redProjectileGlowSpeed,4,
 redProjectileDamage,5,
 redProjectileShotByEnemy,TRUE,
+blueProjectileVelocity,0,-2
+blueProjectileGlowSpeed,20,
+blueProjectileDamage,5000,
+blueProjectileShotByEnemy,TRUE,

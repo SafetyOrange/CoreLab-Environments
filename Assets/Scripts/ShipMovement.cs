@@ -43,7 +43,9 @@ public class ShipMovement : MonoBehaviour {
 		} else if (Input.GetKey (KeyCode.S) || Input.GetKey (KeyCode.DownArrow)) {
 			movement.y -= speed.y * Time.deltaTime;
 		}
-		 
+		if (wrapScreen) {
+			//need this here
+		}
 		transform.position = movement;
 
 
@@ -54,7 +56,11 @@ public class ShipMovement : MonoBehaviour {
 	}
 
 	void fire(){
-
+		firing = true;
+		StartCoroutine ("fireAgain");
+	}
+	IEnumerator fireAgain() {
+		yield return null;
 	}
 	void hit( float damage ) {
 		health -= damage;
