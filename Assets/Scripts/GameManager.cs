@@ -13,11 +13,21 @@ public static class GameManager {
 //You also have to add it in the switch statement
 		"backgroundScrollSpeed",
 		"shipSpeed",
-		"shipWrap"
+		"shipWrap",
+		"redProjectileVelocity",
+		"redProjectileGlowSpeed",
+		"redProjectileDamage",
+		"redProjectileShotByEnemy"
 	};
 	public static Vector2 backgroundScrollSpeed;
 	public static Vector2 shipSpeed;
 	public static bool shipWrap;
+
+	// --------------- // --------------- // --------------- Projectile Variables
+	public static Vector2 redProjectileVelocity;
+	public static float redProjectileGlowSpeed;
+	public static float redProjectileDamage;
+	public static bool redProjectileShotByEnemy;
 
 
 	public static void init () {
@@ -25,15 +35,15 @@ public static class GameManager {
 
 		TextAsset file = Resources.Load("GameValues") as TextAsset;
 
-		string[] s = file.text.Split (',');
+		string[] commaSeperatedArray = file.text.Split (',');
 
-		foreach (string temp in s) { // Add in the 
-			if (temp.IndexOf ('\n') > 0) {
+		foreach (string temp in commaSeperatedArray) { // go through each value split by commas
+			if (temp.IndexOf ('\n') != -1) {
 				string[] sSplit = temp.Split ('\n');
 				if (sSplit [0] != "") { //don't add the blank line if there is one
 					fileSplit.Add (sSplit [0]);
 				}
-				if (sSplit [1] != "") { //don't add t	he blank line if there is one
+				if (sSplit [1] != "") { //don't add the blank line if there is one
 					fileSplit.Add (sSplit [1]);
 				}
 			} else {
@@ -45,19 +55,38 @@ public static class GameManager {
 		}*/
 		foreach (string key in variableNames) { //this is the line that assigns all values. If something is messing up, it's probably here. 
 			int index = fileSplit.IndexOf (key); //find index of a variable name
-			switch (key) {
+			if (index != -1) {
+				switch (key) {
 				case "backgroundScrollSpeed":
-					backgroundScrollSpeed = new Vector2 ( float.Parse(fileSplit [index + 1]), float.Parse(fileSplit [index + 2]) );
+					backgroundScrollSpeed = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
 				case "shipSpeed":
-					shipSpeed = new Vector2 ( float.Parse(fileSplit [index + 1]), float.Parse(fileSplit [index + 2]) );
+					shipSpeed = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
 				case "shipWrap":
-					shipWrap = bool.Parse( fileSplit[index + 1] );
+					shipWrap = bool.Parse (fileSplit [index + 1]);
+					break;
+				case "redProjectileVelocity":
+					redProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					break;
+				case "redProjectileGlowSpeed":
+					redProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
+					break;
+				case "redProjectileDamage":
+					redProjectileDamage = float.Parse (fileSplit [index + 1]);
+					break;
+				case "redProjectileShotByEnemy":
+					redProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
 					break;
 				default:
 					Debug.Log (key + " didn't find this case in switch, <3 B Gamemanager.cs");
 					break;
+				}
+			} else {
+				Debug.Log ("Didn't find " + key + " in the file. Did a row of the spreadsheet get renamed?");
+				foreach (string st in fileSplit) {
+					Debug.Log (st);
+				}
 			}
 		}
 

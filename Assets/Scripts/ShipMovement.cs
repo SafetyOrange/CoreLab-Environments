@@ -13,7 +13,7 @@ public class ShipMovement : MonoBehaviour {
 
 	IEnumerator loadValues() {
 		while (GameManager.isLoaded == false) {
-			Debug.Log ("not loaded");
+		//	Debug.Log ("not loaded; Ship Movement 16");
 			yield return null;
 		}
 		speed = new Vector2 (GameManager.shipSpeed.x, GameManager.shipSpeed.y);
