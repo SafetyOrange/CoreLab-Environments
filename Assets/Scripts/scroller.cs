@@ -14,6 +14,7 @@ public class scroller : MonoBehaviour {
 	void Start () {	
 		renderR = GetComponent<MeshRenderer> ();
 		StartCoroutine ("loadValues");
+		transform.position = new Vector3 (0, 1, 10); //lock to certain position
 	}
 
 	IEnumerator loadValues() {

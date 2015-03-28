@@ -9,6 +9,6 @@ public class redProjectile : Projectile {
 		velocity = GameManager.redProjectileVelocity;
 		glowSpeed = GameManager.redProjectileGlowSpeed;
 		damage = GameManager.redProjectileDamage;
-		shotByEnemy = GameManager.redProjectileShotByEnemy;
+		//shotByEnemy = GameManager.redProjectileShotByEnemy;
 	}
 }

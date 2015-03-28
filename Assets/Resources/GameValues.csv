@@ -1,12 +1,14 @@
 backgroundScrollSpeed,0,-0.002
 shipSpeed,10,10
 shipHealth,10,
+shipFireCooldown,0.2,
+shipShotDamage,2,
+shipShotGlowSpeed,2,
+shipShotVelocity,0,2
 shipWrap,FALSE,
 redProjectileVelocity,0.2,-1
 redProjectileGlowSpeed,4,
 redProjectileDamage,5,
-redProjectileShotByEnemy,TRUE,
 blueProjectileVelocity,0,-2
 blueProjectileGlowSpeed,20,
 blueProjectileDamage,5000,
-blueProjectileShotByEnemy,TRUE,

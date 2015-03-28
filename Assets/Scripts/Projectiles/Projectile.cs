@@ -20,12 +20,14 @@ public class Projectile : MonoBehaviour {
 	void Update () {
 		if (GameManager.isLoaded) {
 			transform.position = new Vector3 (transform.position.x + velocity.x * Time.deltaTime, transform.position.y + velocity.y * Time.deltaTime, transform.position.z);
-			SpriteRenderR.color = new Color (
-				SpriteRenderR.color.r,
-				SpriteRenderR.color.g,
-				SpriteRenderR.color.b,
-				(float) Math.Sin (timePassed) * .5f + .5f);
-			timePassed += Time.deltaTime * (float)Math.PI * glowSpeed;
+			if (glowSpeed > 0) {
+				SpriteRenderR.color = new Color (
+					SpriteRenderR.color.r,
+					SpriteRenderR.color.g,
+					SpriteRenderR.color.b,
+					(float)Math.Sin (timePassed) * .5f + .5f);
+				timePassed += Time.deltaTime * (float)Math.PI * glowSpeed;
+			}
 		}
 	}
 

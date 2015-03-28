@@ -8,43 +8,62 @@ public static class GameManager {
 	public static bool isLoaded = false;
 
 	//Game Variables
+
+
+/* 
+ * IMPORTANT!!! You have to add in each variable name three times!
+ * 
+ *	1. The name of the variable in variableNames[] in order for the program to asssign it from the spreadsheet
+ *	2. The variable name as public static <Type> so scripts can access it
+ *	3. The switch statement to hook up the variableNames[] with the Spreadsheet 
+ *	
+ */
 	private static string[] variableNames = {
-//IMPORTANT You have to add in the name of the variable here in order for the program to find it.
-//You also have to add it in the switch statement
 		"backgroundScrollSpeed",
 		"shipSpeed",
 		"shipWrap",
+		"shipFireCooldown",
 		"shipHealth",
+		"shipShotDamage",
+		"shipShotVelocity",
+		"shipShotGlowSpeed",
 		"redProjectileVelocity",
 		"redProjectileGlowSpeed",
 		"redProjectileDamage",
-		"redProjectileShotByEnemy",
+		//"redProjectileShotByEnemy",
 		"blueProjectileVelocity",
 		"blueProjectileGlowSpeed",
 		"blueProjectileDamage",
-		"blueProjectileShotByEnemy"
+		//"blueProjectileShotByEnemy"
 	};
 	public static Vector2 backgroundScrollSpeed;
 	public static Vector2 shipSpeed;
 	public static bool shipWrap;
 	public static float shipHealth;
+	public static float shipFireCooldown;
+	public static float shipShotDamage;
+	public static Vector2 shipShotVelocity;
+	public static float shipShotGlowSpeed;
 
 	// --------------- // --------------- // --------------- Projectile Variables
 	public static Vector2 redProjectileVelocity;
 	public static float redProjectileGlowSpeed;
 	public static float redProjectileDamage;
-	public static bool redProjectileShotByEnemy;
+	public static bool redProjectileShotByEnemy; // this one isn't used
 
 	public static Vector2 blueProjectileVelocity;
 	public static float blueProjectileGlowSpeed;
 	public static float blueProjectileDamage;
-	public static bool blueProjectileShotByEnemy;
+	public static bool blueProjectileShotByEnemy; // this one isn't used
 
+
+	// --------------- // --------------- // --------------- Other Game State Variables
+	public static bool restartRequired = false;
 
 	public static void init () {
-		List<string> fileSplit = new List<string>();
+		List<string> fileSplit = new List<string> ();
 
-		TextAsset file = Resources.Load("GameValues") as TextAsset;
+		TextAsset file = Resources.Load ("GameValues") as TextAsset;
 
 		string[] commaSeperatedArray = file.text.Split (',');
 
@@ -64,6 +83,7 @@ public static class GameManager {
 		/*foreach (string theS in fileSplit) {
 			Debug.Log (theS + " fileSplit value (40)");
 		}*/
+
 		foreach (string key in variableNames) { //this is the line that assigns all values. If something is messing up, it's probably here. 
 			int index = fileSplit.IndexOf (key); //find index of a variable name
 			if (index != -1) {
@@ -71,6 +91,7 @@ public static class GameManager {
 				case "backgroundScrollSpeed":
 					backgroundScrollSpeed = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
+					// --------------- // --------------- // --------------- // --------------- // --------------- Ship Variables
 				case "shipSpeed":
 					shipSpeed = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
@@ -80,6 +101,19 @@ public static class GameManager {
 				case "shipHealth":
 					shipHealth = float.Parse (fileSplit [index + 1]);
 					break;
+				case "shipFireCooldown":
+					shipFireCooldown = float.Parse (fileSplit [index + 1]);
+					break;
+				case "shipShotDamage":
+					shipShotDamage = float.Parse (fileSplit [index + 1]);
+					break;
+				case "shipShotVelocity":
+					shipShotVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					break;
+				case "shipShotGlowSpeed":
+					shipShotGlowSpeed = float.Parse (fileSplit [index + 1]);
+					break;
+					// --------------- // --------------- // --------------- // --------------- // --------------- Projectile Variables
 				case "redProjectileVelocity":
 					redProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
@@ -104,6 +138,7 @@ public static class GameManager {
 				case "blueProjectileShotByEnemy":
 					blueProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
 					break;
+					// --------------- // --------------- // --------------- // --------------- // --------------- Error Catching
 				default:
 					Debug.Log (key + " didn't find this case in switch, <3 B Gamemanager.cs");
 					break;
