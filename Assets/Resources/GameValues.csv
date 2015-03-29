@@ -9,6 +9,16 @@ shipWrap,FALSE,
 redProjectileVelocity,0.2,-1
 redProjectileGlowSpeed,4,
 redProjectileDamage,5,
+redEnemyHealth,5,
 blueProjectileVelocity,0,-2
 blueProjectileGlowSpeed,20,
 blueProjectileDamage,5000,
+blueEnemyHealth,5,
+yellowProjectileVelocity,0.2,-1
+yellowProjectileGlowSpeed,4,
+yellowProjectileDamage,5,
+yellowEnemyHealth,5,
+greenProjectileVelocity,0.2,-1
+greenProjectileGlowSpeed,4,
+greenProjectileDamage,5,
+greenEnemyHealth,5,

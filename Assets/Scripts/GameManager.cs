@@ -30,12 +30,21 @@ public static class GameManager {
 		"redProjectileVelocity",
 		"redProjectileGlowSpeed",
 		"redProjectileDamage",
+		"redEnemyHealth",
 		//"redProjectileShotByEnemy",
 		"blueProjectileVelocity",
 		"blueProjectileGlowSpeed",
 		"blueProjectileDamage",
+		"blueEnemyHealth",
 		//"blueProjectileShotByEnemy"
-		"redEnemyHealth"
+		"yellowProjectileVelocity",
+		"yellowProjectileGlowSpeed",
+		"yellowProjectileDamage",
+		"yellowEnemyHealth",
+		"greenProjectileVelocity",
+		"greenProjectileGlowSpeed",
+		"greenProjectileDamage",
+		"greenEnemyHealth"
 	};
 	public static Vector2 backgroundScrollSpeed;
 	public static Vector2 shipSpeed;
@@ -59,8 +68,22 @@ public static class GameManager {
 	public static float blueProjectileDamage;
 	public static bool blueProjectileShotByEnemy; // this one isn't used
 
+	public static Vector2 yellowProjectileVelocity;
+	public static float yellowProjectileGlowSpeed;
+	public static float yellowProjectileDamage;
+	public static bool yellowProjectileShotByEnemy; // this one isn't used
+
+	public static Vector2 greenProjectileVelocity;
+	public static float greenProjectileGlowSpeed;
+	public static float greenProjectileDamage;
+	public static bool greenProjectileShotByEnemy; // this one isn't used
+
 	// --------------- // --------------- // --------------- Enemy Variables
 	public static float redEnemyHealth;
+	public static float blueEnemyHealth;
+	public static float greenEnemyHealth;
+	public static float yellowEnemyHealth;
+
 
 
 	// --------------- // --------------- // --------------- Other Game State Variables
@@ -132,6 +155,9 @@ public static class GameManager {
 				case "redProjectileShotByEnemy":
 					redProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
 					break;
+				case "redEnemyHealth":
+					redEnemyHealth = float.Parse (fileSplit [index + 1]);
+					break;
 				case "blueProjectileVelocity":
 					blueProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
@@ -144,8 +170,38 @@ public static class GameManager {
 				case "blueProjectileShotByEnemy":
 					blueProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
 					break;
-				case "redEnemyHealth":
-					redEnemyHealth = float.Parse (fileSplit [index + 1]);
+				case "blueEnemyHealth":
+					blueEnemyHealth = float.Parse (fileSplit [index + 1]);
+					break;
+				case "yellowProjectileVelocity":
+					blueProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					break;
+				case "yellowProjectileGlowSpeed":
+					blueProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
+					break;
+				case "yellowProjectileDamage":
+					blueProjectileDamage = float.Parse (fileSplit [index + 1]);
+					break;
+				case "yellowProjectileShotByEnemy":
+					blueProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
+					break;
+				case "yellowEnemyHealth":
+					blueEnemyHealth = float.Parse (fileSplit [index + 1]);
+					break;
+				case "greenProjectileVelocity":
+					blueProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					break;
+				case "greenProjectileGlowSpeed":
+					blueProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
+					break;
+				case "greenProjectileDamage":
+					blueProjectileDamage = float.Parse (fileSplit [index + 1]);
+					break;
+				case "greenProjectileShotByEnemy":
+					blueProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
+					break;
+				case "greenEnemyHealth":
+					blueEnemyHealth = float.Parse (fileSplit [index + 1]);
 					break;
 					// --------------- // --------------- // --------------- // --------------- // --------------- Error Catching
 				default:
