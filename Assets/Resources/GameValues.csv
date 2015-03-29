@@ -3,8 +3,8 @@ shipSpeed,10,10
 shipHealth,10,
 shipFireCooldown,0.2,
 shipShotDamage,2,
-shipShotGlowSpeed,2,
-shipShotVelocity,0,2
+shipShotGlowSpeed,10,
+shipShotVelocity,0,10
 shipWrap,FALSE,
 redProjectileVelocity,0.2,-1
 redProjectileGlowSpeed,4,

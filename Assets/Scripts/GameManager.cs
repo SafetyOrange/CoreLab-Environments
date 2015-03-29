@@ -35,6 +35,7 @@ public static class GameManager {
 		"blueProjectileGlowSpeed",
 		"blueProjectileDamage",
 		//"blueProjectileShotByEnemy"
+		"redEnemyHealth"
 	};
 	public static Vector2 backgroundScrollSpeed;
 	public static Vector2 shipSpeed;
@@ -55,6 +56,9 @@ public static class GameManager {
 	public static float blueProjectileGlowSpeed;
 	public static float blueProjectileDamage;
 	public static bool blueProjectileShotByEnemy; // this one isn't used
+
+	// --------------- // --------------- // --------------- Enemy Variables
+	public static float redEnemyHealth;
 
 
 	// --------------- // --------------- // --------------- Other Game State Variables
@@ -137,6 +141,9 @@ public static class GameManager {
 					break;
 				case "blueProjectileShotByEnemy":
 					blueProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
+					break;
+				case "redEnemyHealth":
+					redEnemyHealth = float.Parse (fileSplit [index + 1]);
 					break;
 					// --------------- // --------------- // --------------- // --------------- // --------------- Error Catching
 				default:

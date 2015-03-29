@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class LoadVaules : MonoBehaviour {
-	void Start () {
+	void Awake () {
 		GameManager.init ();
 	}
 
