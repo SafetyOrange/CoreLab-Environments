@@ -30,6 +30,7 @@ public class ShipMovement : MonoBehaviour {
 
 	void Update () {
 		checkInput();
+		screenWrap(true);
 		
 	}
 
@@ -57,6 +58,25 @@ public class ShipMovement : MonoBehaviour {
 		//Check for fire
 		if( Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0) ) {
 			fire();
+		}
+	}
+
+	void screenWrap(bool state){
+		if(state){
+			if(transform.position.x<=GameManager.minScreenBounds.x){
+				transform.position = new Vector3(GameManager.maxScreenBounds.x-.01f, transform.position.y, 9);
+			}
+			else if(transform.position.x>=GameManager.maxScreenBounds.x){
+				transform.position = new Vector3(GameManager.minScreenBounds.x+.01f, transform.position.y, 9);
+			}
+		}
+		else{
+			if(transform.position.x<=GameManager.minScreenBounds.x){
+				transform.position = new Vector3(GameManager.minScreenBounds.x+.01f, transform.position.y, 9);
+			}
+			else if(transform.position.x>=GameManager.maxScreenBounds.x){
+				transform.position = new Vector3(GameManager.maxScreenBounds.x-.01f, transform.position.y, 9);
+			}
 		}
 	}
 

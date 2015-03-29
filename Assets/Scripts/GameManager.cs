@@ -44,6 +44,8 @@ public static class GameManager {
 	public static float shipShotDamage;
 	public static Vector2 shipShotVelocity;
 	public static float shipShotGlowSpeed;
+	public static Vector3 minScreenBounds;
+	public static Vector3 maxScreenBounds;
 
 	// --------------- // --------------- // --------------- Projectile Variables
 	public static Vector2 redProjectileVelocity;
@@ -147,6 +149,10 @@ public static class GameManager {
 				Debug.Log ("Didn't find " + key + " in the file. Did a row of the spreadsheet get renamed?");
 				//foreach (string st in fileSplit) { Debug.Log (st); }
 			}
+
+			minScreenBounds = GameObject.Find("Controller").GetComponent<BoxCollider2D>().bounds.min;
+			maxScreenBounds = GameObject.Find("Controller").GetComponent<BoxCollider2D>().bounds.max;
+
 		}
 
 		//this should be the last name of the file

@@ -29,7 +29,7 @@ public class scroller : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		renderR.material.SetTextureOffset ("_MainTex", new Vector2 (xOffset, yOffset)); 
-		yOffset += scrollspeedY;
-		xOffset += scrollspeedX;
+		yOffset += scrollspeedY * Time.deltaTime * -60;
+		xOffset += scrollspeedX * Time.deltaTime * 60;
 	}
 }
