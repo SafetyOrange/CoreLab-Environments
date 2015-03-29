@@ -2,11 +2,8 @@
 using System.Collections;
 
 public class LoadVaules : MonoBehaviour {
-
 	void Awake () {
-		Transform lockInit;
 		GameManager.init ();
-		lockInit = this.transform;
 	}
 
 	void Update() {
