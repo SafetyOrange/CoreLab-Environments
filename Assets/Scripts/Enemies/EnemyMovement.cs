@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
+
+	public string colorTag  = "red";
+
 	//Enemy Variables
 	bool alive = false;
 	string shipClass = "advance";
@@ -21,7 +24,7 @@ public class EnemyMovement : MonoBehaviour {
 	
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
-		GameManager.dub(this.gameObject, "red");					//Change this to access the different "Save-slots" for your customized enemies. Red, blue, green, and yellow"
+		GameManager.dub(this.gameObject, colorTag);					//Change this to access the different "Save-slots" for your customized enemies. Red, blue, green, and yellow
 	}
 
 	void Update () {
