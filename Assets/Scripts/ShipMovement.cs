@@ -110,7 +110,7 @@ public class ShipMovement : MonoBehaviour {
 	}
 
 	void updateUI() {
-		shipHealthDisplay.text = Math.Round(health, 2).ToString ();
+		shipHealthDisplay.text = Math.Round(health, 2).ToString();
 	}
 
 	void fire(){
@@ -132,6 +132,7 @@ public class ShipMovement : MonoBehaviour {
 		//Debug.Log ("SHIP HIT! Health Left: " + health);
 		if (health <= 0) {
 			explode ();
+			Debug.Log("THIS IS WHERE YOU DIEEEEEEE");
 		}
 	}
 	IEnumerator turnBackNormal () {
