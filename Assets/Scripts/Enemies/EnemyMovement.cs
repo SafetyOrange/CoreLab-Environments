@@ -24,6 +24,7 @@ public class EnemyMovement : MonoBehaviour {
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
 		StartCoroutine ("loadValues");
+		lastFireTime = fireCooldownTime;
 		SpriteRenderR = GetComponent<SpriteRenderer> ();
 	}
 
@@ -49,8 +50,8 @@ public class EnemyMovement : MonoBehaviour {
 		Vector3 ViewportPosition = Camera.main.WorldToViewportPoint (transform.position);
 		if (wrapScreen) {
 			Vector3 newPos = transform.position;
-			Vector3 wrapPositionZero = Camera.main.ViewportToWorldPoint (Vector3.zero);
-			Vector3 wrapPositionOne = Camera.main.ViewportToWorldPoint (Vector3.one);
+			Vector3 wrapPositionZero = Camera.main.ViewportToWorldPoint (new Vector3(.01f, 0, 0));
+			Vector3 wrapPositionOne = Camera.main.ViewportToWorldPoint (new Vector3(.99f, 0, 0));
 
 			if (ViewportPosition.x > 1) {
 				newPos = new Vector3 (wrapPositionZero.x, transform.position.y, transform.position.z);
