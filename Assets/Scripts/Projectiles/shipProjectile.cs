@@ -10,5 +10,6 @@ public class shipProjectile : Projectile {
 		glowSpeed = GameManager.shipShotGlowSpeed;
 		damage = GameManager.shipShotDamage;
 		shotByEnemy = false;
+		loadedValues = true;
 	}
 }

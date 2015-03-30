@@ -3,18 +3,24 @@ using System.Collections;
 
 public class ShipMovement : MonoBehaviour {
 
-	Vector2 speed = new Vector2(5,0);
-	bool firing = false;
-	float fireCooldownTime = 1;
+	public Vector2 speed = new Vector2(5,0);
+	public float fireCooldownTime = 1;
+	public bool wrapScreen = false;
+	public float health = 1;
+	public float damageToEnemyShip =1;
+
 	float lastFireTime = 0;
-	bool wrapScreen = false;
-	float health = 1;
+	bool firing = false;
 
 	public Transform shipShot;
 	public Transform explosion;
+
+	SpriteRenderer SpriteRenderR;
+	float hitTime = .15f;
 	
 	void Start () {
 		StartCoroutine ("loadValues");
+		SpriteRenderR = GetComponent<SpriteRenderer> ();
 	}
 
 	IEnumerator loadValues() {
@@ -26,11 +32,12 @@ public class ShipMovement : MonoBehaviour {
 		wrapScreen = GameManager.shipWrap;
 		health = GameManager.shipHealth;
 		fireCooldownTime = GameManager.shipFireCooldown;
+		damageToEnemyShip = GameManager.shipRammingDamage;
 	}
 
 	void Update () {
 		checkInput();
-		screenWrap(true);
+		screenWrap();
 		
 	}
 
@@ -50,33 +57,51 @@ public class ShipMovement : MonoBehaviour {
 		} else if (Input.GetKey (KeyCode.S) || Input.GetKey (KeyCode.DownArrow)) {
 			movement.y -= speed.y * Time.deltaTime;
 		}
-		if (wrapScreen) {
-			//need this here
-		}
+
 		transform.position = movement;
 
 		//Check for fire
-		if( Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0) ) {
+		if( Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0) || Input.GetKey( KeyCode.X ) ) {
 			fire();
+		}
+
+		if (Input.GetKey (KeyCode.R)) {
+			explode ();
 		}
 	}
 
-	void screenWrap(bool state){
-		if(state){
-			if(transform.position.x<=GameManager.minScreenBounds.x){
-				transform.position = new Vector3(GameManager.maxScreenBounds.x-.01f, transform.position.y, 9);
+	void screenWrap(){
+		Vector3 ViewportPosition = Camera.main.WorldToViewportPoint (transform.position);
+		Vector3 wrapPositionZero = Camera.main.ViewportToWorldPoint (Vector3.zero);
+		Vector3 wrapPositionOne = Camera.main.ViewportToWorldPoint (Vector3.one);
+		Vector3 newPos = transform.position;
+		if (wrapScreen) {
+
+			if (ViewportPosition.x > 1) {
+				newPos = new Vector3 (wrapPositionZero.x + .1f, transform.position.y, transform.position.z);
+			} else if (ViewportPosition.x < 0) {
+				newPos = new Vector3 (wrapPositionOne.x + -.1f, transform.position.y, transform.position.z);
 			}
-			else if(transform.position.x>=GameManager.maxScreenBounds.x){
-				transform.position = new Vector3(GameManager.minScreenBounds.x+.01f, transform.position.y, 9);
+			transform.position = newPos;
+			if (ViewportPosition.y > 1) {
+				newPos = new Vector3 (transform.position.x, wrapPositionZero.y, transform.position.z);
+			} else if (ViewportPosition.y < 0) {
+				newPos = new Vector3 (transform.position.x, wrapPositionOne.y, transform.position.z);
 			}
-		}
-		else{
-			if(transform.position.x<=GameManager.minScreenBounds.x){
-				transform.position = new Vector3(GameManager.minScreenBounds.x+.01f, transform.position.y, 9);
+			transform.position = newPos;
+		}else{
+			if (ViewportPosition.x > 1) {
+				newPos = new Vector3 (wrapPositionOne.x - .1f, transform.position.y, transform.position.z);
+			} else if (ViewportPosition.x < 0) {
+				newPos = new Vector3 (wrapPositionZero.x + -.1f, transform.position.y, transform.position.z);
 			}
-			else if(transform.position.x>=GameManager.maxScreenBounds.x){
-				transform.position = new Vector3(GameManager.maxScreenBounds.x-.01f, transform.position.y, 9);
+			transform.position = newPos;
+			if (ViewportPosition.y > 1) {
+				newPos = new Vector3 (transform.position.x, wrapPositionOne.y, transform.position.z);
+			} else if (ViewportPosition.y < 0) {
+				newPos = new Vector3 (transform.position.x, wrapPositionZero.y, transform.position.z);
 			}
+			transform.position = newPos;
 		}
 	}
 
@@ -92,15 +117,28 @@ public class ShipMovement : MonoBehaviour {
 		}
 	}
 	void hit( float damage ) {
+		SpriteRenderR.color = Color.red;
+		StartCoroutine ("turnBackNormal");
+
 		health -= damage;
-		Debug.Log ("SHIP HIT! Health Left: " + health);
-		if (health < 0) {
+		//Debug.Log ("SHIP HIT! Health Left: " + health);
+		if (health <= 0) {
 			explode ();
 		}
 	}
+	IEnumerator turnBackNormal () {
+		yield return new WaitForSeconds (hitTime);
+		SpriteRenderR.color = Color.white;
+	}
+
 	void explode() {
 		Instantiate (explosion, transform.position, transform.rotation);
 		Destroy (gameObject);
 		GameManager.restartRequired = true;
+	}
+	void OnTriggerEnter2D(Collider2D coll){
+		if (coll.gameObject.tag == "Enemy") {
+			coll.gameObject.SendMessage ("hit", damageToEnemyShip);
+		}
 	}
 }

@@ -8,6 +8,9 @@ public class Projectile : MonoBehaviour {
 	public float glowSpeed = 1;
 	public float damage = 1;
 	public bool shotByEnemy = true; //used to determine whether the player shoots it or the enemies shoot it
+	public Vector2 projectileVariance = Vector2.zero;
+
+	public bool loadedValues = false;
 
 	SpriteRenderer SpriteRenderR;
 	float timePassed = 0;
@@ -18,7 +21,7 @@ public class Projectile : MonoBehaviour {
 	}
 
 	void Update () {
-		if (GameManager.isLoaded) {
+		if (loadedValues) {
 			transform.position = new Vector3 (transform.position.x + velocity.x * Time.deltaTime, transform.position.y + velocity.y * Time.deltaTime, transform.position.z);
 			if (glowSpeed > 0) {
 				SpriteRenderR.color = new Color (

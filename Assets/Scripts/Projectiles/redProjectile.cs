@@ -6,9 +6,13 @@ public class redProjectile : Projectile {
 		while (!GameManager.isLoaded) {
 			yield return null;
 		}
-		velocity = GameManager.redProjectileVelocity;
+		velocity = GameManager.redProjectileVelocity + new Vector2( 
+			Random.Range(-GameManager.redProjectileVariance.x, GameManager.redProjectileVariance.x), 
+			Random.Range(-GameManager.redProjectileVariance.y, GameManager.redProjectileVariance.y)
+		);
 		glowSpeed = GameManager.redProjectileGlowSpeed;
 		damage = GameManager.redProjectileDamage;
 		//shotByEnemy = GameManager.redProjectileShotByEnemy;
+		loadedValues = true;
 	}
 }

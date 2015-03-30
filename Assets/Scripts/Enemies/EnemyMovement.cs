@@ -3,63 +3,99 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
 
-	public string colorTag  = "red";
-
 	//Enemy Variables
-	bool alive = false;
-	string shipClass = "advance";
-	float xSpeed = 0;
-	float ySpeed = 5;
-	float variance = Random.Range(GameManager.minScreenBounds.x, GameManager.maxScreenBounds.x);
+	public string shipClass = "advance";
+	public Vector2 speed = Vector2.zero;
+	public float health = 1;
+	bool firing = false;
+	public float fireCooldownTime = 1;
+	float lastFireTime = 0;
+	public bool wrapScreen = true;
+	public float damageToPlayerShip = 1;
 
-	//variables that scrape data from GameManaager.dub()
-	public float health;
-	public Vector2 proectileSpeed;
-	public float projectileGlowSpeed;
-	public float projectileDamage;
-	public bool projectileShotByEnemy;
+	SpriteRenderer SpriteRenderR;
+	float hitTime = .15f;
 
 	//External Variables
 	GameObject player;
-	
+	public GameObject bulletToFire;
+	public GameObject explosion;
+
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
-		GameManager.dub(this.gameObject, colorTag);					//Change this to access the different "Save-slots" for your customized enemies. Red, blue, green, and yellow
+		StartCoroutine ("loadValues");
+		SpriteRenderR = GetComponent<SpriteRenderer> ();
 	}
 
 	void Update () {
 
-		switch(shipClass){
-
-		case "advance":
-			//Advance Enemy
-			transform.position = new Vector2( transform.position.x, (transform.position.y - ySpeed) );
-			break;
-		case "homing":
-			//Homing Enemy
-			float xLerp = Mathf.Lerp(transform.position.x, player.transform.position.x, .5f);
-			transform.position = new Vector2(xLerp, transform.position.y - ySpeed);
-			break;
-		case "oscillate":
-			//Oscillating Enemy
-			float x = xSpeed * Mathf.Sin(Time.time);
-			transform.position = new Vector2(x, transform.position.y);
-			break;
-		case "radial":
-			//Static / AOE Enemy
-			if(Vector2.Distance(transform.position, new Vector2(transform.position.x, Screen.height*.5f))>=4){
-				transform.position = new Vector2(transform.position.x, transform.position.y - ySpeed);
-			}
-			else{
-				fire();
-			}
-			break;
-
-		}
+		checkFire ();
+		moveShip ();
 
 	}
 
-	void fire(){
-	
+	void checkFire(){
+		if (!firing) {
+			firing = true;
+			lastFireTime = Time.time;
+			Instantiate (bulletToFire, transform.position, transform.rotation);
+		} else if (Time.time - lastFireTime > fireCooldownTime) {
+			firing = false;
+		}
+	}
+	void moveShip() {
+		transform.position = new Vector3( transform.position.x + speed.x * Time.deltaTime, transform.position.y + speed.y * Time.deltaTime, transform.position.z );
+
+		Vector3 ViewportPosition = Camera.main.WorldToViewportPoint (transform.position);
+		if (wrapScreen) {
+			Vector3 newPos = transform.position;
+			Vector3 wrapPositionZero = Camera.main.ViewportToWorldPoint (Vector3.zero);
+			Vector3 wrapPositionOne = Camera.main.ViewportToWorldPoint (Vector3.one);
+
+			if (ViewportPosition.x > 1) {
+				newPos = new Vector3 (wrapPositionZero.x, transform.position.y, transform.position.z);
+			} else if (ViewportPosition.x < 0) {
+				newPos = new Vector3 (wrapPositionOne.x, transform.position.y, transform.position.z);
+			}
+			transform.position = newPos;
+			if (ViewportPosition.y > 1) {
+				newPos = new Vector3 (transform.position.x, wrapPositionZero.y, transform.position.z);
+			} else if (ViewportPosition.y < 0) {
+				newPos = new Vector3 (transform.position.x, wrapPositionOne.y, transform.position.z);
+			}
+			transform.position = newPos;
+		} else {
+			if ((ViewportPosition.x > 1) || (ViewportPosition.x < 0)) {
+				speed = new Vector2 (speed.x * -1, speed.y);
+			}
+			if ((ViewportPosition.y > 1) || (ViewportPosition.y < 0)) {
+				speed = new Vector2 (speed.x, speed.y* -1);
+			}
+		}
+	}
+	void hit( float damage ) {
+		SpriteRenderR.color = Color.red;
+		StartCoroutine ("turnBackNormal");
+
+		health -= damage;
+//		Debug.Log ("Enemy HIT! Health Left: " + health);
+		if (health < 0) {
+			explode ();
+		}
+	}
+	IEnumerator turnBackNormal () {
+		yield return new WaitForSeconds (hitTime);
+		SpriteRenderR.color = Color.white;
+	}
+
+	void explode() {
+		Instantiate (explosion, transform.position, transform.rotation);
+		Destroy (gameObject);
+	}
+
+	void OnTriggerEnter2D(Collider2D coll){
+		if (coll.gameObject.tag == "Player") {
+			coll.gameObject.SendMessage ("hit", damageToPlayerShip);
+		}
 	}
 }

@@ -20,6 +20,7 @@ public static class GameManager {
  */
 	private static string[] variableNames = {
 		"backgroundScrollSpeed",
+
 		"shipSpeed",
 		"shipWrap",
 		"shipFireCooldown",
@@ -27,24 +28,45 @@ public static class GameManager {
 		"shipShotDamage",
 		"shipShotVelocity",
 		"shipShotGlowSpeed",
+		"shipRammingDamage",
+
 		"redProjectileVelocity",
 		"redProjectileGlowSpeed",
 		"redProjectileDamage",
-		"redEnemyHealth",
-		//"redProjectileShotByEnemy",
+		"redProjectileVariance",
+
 		"blueProjectileVelocity",
 		"blueProjectileGlowSpeed",
 		"blueProjectileDamage",
-		"blueEnemyHealth",
-		//"blueProjectileShotByEnemy"
+		"blueProjectileVariance",
+
 		"yellowProjectileVelocity",
 		"yellowProjectileGlowSpeed",
 		"yellowProjectileDamage",
-		"yellowEnemyHealth",
+		"yellowProjectileVariance",
+
 		"greenProjectileVelocity",
 		"greenProjectileGlowSpeed",
 		"greenProjectileDamage",
-		"greenEnemyHealth"
+		"greenProjectileVariance",
+
+		"billEnemySpeed",
+		"billEnemyFireCooldownTime",
+		"billEnemyHealth",
+		"billEnemyWrapScreen",
+		"billEnemyRammingDamage",
+
+		"keshaEnemySpeed",
+		"keshaEnemyHealth",
+		"keshaEnemyFireCooldownTime",
+		"keshaEnemyWrapScreen",
+		"keshaEnemyRammingDamage",
+
+		"aeroflotEnemySpeed",
+		"aeroflotEnemyHealth",
+		"aeroflotEnemyFireCooldownTime",
+		"aeroflotEnemyWrapScreen",
+		"aeroflotEnemyRammingDamage"
 	};
 	public static Vector2 backgroundScrollSpeed;
 	public static Vector2 shipSpeed;
@@ -54,36 +76,47 @@ public static class GameManager {
 	public static float shipShotDamage;
 	public static Vector2 shipShotVelocity;
 	public static float shipShotGlowSpeed;
-	public static Vector3 minScreenBounds;
-	public static Vector3 maxScreenBounds;
+	public static float shipRammingDamage;
 
 	// --------------- // --------------- // --------------- Projectile Variables
 	public static Vector2 redProjectileVelocity;
 	public static float redProjectileGlowSpeed;
 	public static float redProjectileDamage;
-	public static bool redProjectileShotByEnemy; // this one isn't used
+	public static Vector2 redProjectileVariance;
 
 	public static Vector2 blueProjectileVelocity;
 	public static float blueProjectileGlowSpeed;
 	public static float blueProjectileDamage;
-	public static bool blueProjectileShotByEnemy; // this one isn't used
+	public static Vector2 blueProjectileVariance;
 
 	public static Vector2 yellowProjectileVelocity;
 	public static float yellowProjectileGlowSpeed;
 	public static float yellowProjectileDamage;
-	public static bool yellowProjectileShotByEnemy; // this one isn't used
+	public static Vector2 yellowProjectileVariance;
 
 	public static Vector2 greenProjectileVelocity;
 	public static float greenProjectileGlowSpeed;
 	public static float greenProjectileDamage;
-	public static bool greenProjectileShotByEnemy; // this one isn't used
+	public static Vector2 greenProjectileVariance;
 
 	// --------------- // --------------- // --------------- Enemy Variables
-	public static float redEnemyHealth;
-	public static float blueEnemyHealth;
-	public static float greenEnemyHealth;
-	public static float yellowEnemyHealth;
+	public static float billEnemyHealth;
+	public static Vector2 billEnemySpeed;
+	public static float billEnemyFireCooldownTime;
+	public static bool billEnemyWrapScreen;
+	public static float billEnemyRammingDamage;
 
+	public static Vector2 keshaEnemySpeed;
+	public static float keshaEnemyHealth;
+	public static float keshaEnemyFireCooldownTime;
+	public static bool keshaEnemyWrapScreen;
+	public static float keshaEnemyRammingDamage;
+
+	public static Vector2 aeroflotEnemySpeed;
+	public static float aeroflotEnemyHealth;
+	public static float aeroflotEnemyFireCooldownTime;
+	public static bool aeroflotEnemyWrapScreen;
+	public static float aeroflotEnemyRammingDamage;
 
 
 	// --------------- // --------------- // --------------- Other Game State Variables
@@ -142,6 +175,9 @@ public static class GameManager {
 				case "shipShotGlowSpeed":
 					shipShotGlowSpeed = float.Parse (fileSplit [index + 1]);
 					break;
+				case "shipRammingDamage":
+					shipRammingDamage = float.Parse (fileSplit [index + 1]);
+					break;
 					// --------------- // --------------- // --------------- // --------------- // --------------- Projectile Variables
 				case "redProjectileVelocity":
 					redProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
@@ -152,12 +188,10 @@ public static class GameManager {
 				case "redProjectileDamage":
 					redProjectileDamage = float.Parse (fileSplit [index + 1]);
 					break;
-				case "redProjectileShotByEnemy":
-					redProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
+				case "redProjectileVariance":
+					redProjectileVariance  = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
-				case "redEnemyHealth":
-					redEnemyHealth = float.Parse (fileSplit [index + 1]);
-					break;
+
 				case "blueProjectileVelocity":
 					blueProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
@@ -167,41 +201,82 @@ public static class GameManager {
 				case "blueProjectileDamage":
 					blueProjectileDamage = float.Parse (fileSplit [index + 1]);
 					break;
-				case "blueProjectileShotByEnemy":
-					blueProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
+				case "blueProjectileVariance":
+					blueProjectileVariance  = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
-				case "blueEnemyHealth":
-					blueEnemyHealth = float.Parse (fileSplit [index + 1]);
-					break;
+
 				case "yellowProjectileVelocity":
-					blueProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					yellowProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
 				case "yellowProjectileGlowSpeed":
-					blueProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
+					yellowProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
 					break;
 				case "yellowProjectileDamage":
-					blueProjectileDamage = float.Parse (fileSplit [index + 1]);
+					yellowProjectileDamage = float.Parse (fileSplit [index + 1]);
 					break;
-				case "yellowProjectileShotByEnemy":
-					blueProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
+				case "yellowProjectileVariance":
+					yellowProjectileVariance = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
-				case "yellowEnemyHealth":
-					blueEnemyHealth = float.Parse (fileSplit [index + 1]);
-					break;
+
 				case "greenProjectileVelocity":
-					blueProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					greenProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
 				case "greenProjectileGlowSpeed":
-					blueProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
+					greenProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
 					break;
 				case "greenProjectileDamage":
-					blueProjectileDamage = float.Parse (fileSplit [index + 1]);
+					greenProjectileDamage = float.Parse (fileSplit [index + 1]);
 					break;
-				case "greenProjectileShotByEnemy":
-					blueProjectileShotByEnemy = bool.Parse (fileSplit [index + 1]);
+				case "greenProjectileVariance":
+					greenProjectileVariance = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
-				case "greenEnemyHealth":
-					blueEnemyHealth = float.Parse (fileSplit [index + 1]);
+					// --------------- // --------------- // --------------- // --------------- // --------------- Enemy Variables
+				case "billEnemyHealth":
+					billEnemyHealth = float.Parse (fileSplit [index + 1]);
+					break;
+				case "billEnemySpeed":
+					billEnemySpeed = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					break;
+				case "billEnemyFireCooldownTime":
+					billEnemyFireCooldownTime = float.Parse (fileSplit [index + 1]);
+					break;
+				case "billEnemyWrapScreen":
+					billEnemyWrapScreen = bool.Parse (fileSplit [index + 1]);
+					break;
+				case "billEnemyRammingDamage":
+					billEnemyRammingDamage = float.Parse (fileSplit [index + 1]);
+					break;
+
+				case "keshaEnemySpeed":
+					keshaEnemySpeed = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					break;
+				case "keshaEnemyHealth":
+					keshaEnemyHealth = float.Parse (fileSplit [index + 1]);
+					break;
+				case "keshaEnemyFireCooldownTime":
+					keshaEnemyFireCooldownTime = float.Parse (fileSplit [index + 1]);
+					break;
+				case "keshaEnemyWrapScreen":
+					keshaEnemyWrapScreen = bool.Parse (fileSplit [index + 1]);
+					break;
+				case "keshaEnemyRammingDamage":
+					billEnemyRammingDamage = float.Parse (fileSplit [index + 1]);
+					break;
+
+				case "aeroflotEnemySpeed":
+					aeroflotEnemySpeed = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					break;
+				case "aeroflotEnemyHealth":
+					aeroflotEnemyHealth = float.Parse (fileSplit [index + 1]);
+					break;
+				case "aeroflotEnemyFireCooldownTime":
+					aeroflotEnemyFireCooldownTime = float.Parse (fileSplit [index + 1]);
+					break;
+				case "aeroflotEnemyWrapScreen":
+					aeroflotEnemyWrapScreen = bool.Parse (fileSplit [index + 1]);
+					break;
+				case "aeroflotEnemyRammingDamage":
+					billEnemyRammingDamage = float.Parse (fileSplit [index + 1]);
 					break;
 					// --------------- // --------------- // --------------- // --------------- // --------------- Error Catching
 				default:
@@ -212,50 +287,10 @@ public static class GameManager {
 				Debug.Log ("Didn't find " + key + " in the file. Did a row of the spreadsheet get renamed?");
 				//foreach (string st in fileSplit) { Debug.Log (st); }
 			}
-
-			minScreenBounds = GameObject.Find("Controller").GetComponent<BoxCollider2D>().bounds.min;
-			maxScreenBounds = GameObject.Find("Controller").GetComponent<BoxCollider2D>().bounds.max;
-
+				
 		}
 
 		//this should be the last name of the file
 		isLoaded = true;
 	}
-
-	public static void dub(GameObject target, string tag){
-
-		if(tag == "red"){
-			target.GetComponent<EnemyMovement>().health = redEnemyHealth;
-			target.GetComponent<EnemyMovement>().proectileSpeed = redProjectileVelocity;
-			target.GetComponent<EnemyMovement>().projectileGlowSpeed = redProjectileGlowSpeed;
-			target.GetComponent<EnemyMovement>().projectileDamage = redProjectileDamage;
-			target.GetComponent<EnemyMovement>().projectileShotByEnemy = redProjectileShotByEnemy;
-		}
-		else if (tag == "blue"){
-			target.GetComponent<EnemyMovement>().health = blueEnemyHealth;
-			target.GetComponent<EnemyMovement>().proectileSpeed = blueProjectileVelocity;
-			target.GetComponent<EnemyMovement>().projectileGlowSpeed = blueProjectileGlowSpeed;
-			target.GetComponent<EnemyMovement>().projectileDamage = blueProjectileDamage;
-			target.GetComponent<EnemyMovement>().projectileShotByEnemy = blueProjectileShotByEnemy;
-		}
-		else if (tag == "yellow"){
-			target.GetComponent<EnemyMovement>().health = yellowEnemyHealth;
-			target.GetComponent<EnemyMovement>().proectileSpeed = yellowProjectileVelocity;
-			target.GetComponent<EnemyMovement>().projectileGlowSpeed = yellowProjectileGlowSpeed;
-			target.GetComponent<EnemyMovement>().projectileDamage = yellowProjectileDamage;
-			target.GetComponent<EnemyMovement>().projectileShotByEnemy = yellowProjectileShotByEnemy;
-		}
-		else if (tag == "green"){
-			target.GetComponent<EnemyMovement>().health = greenEnemyHealth;
-			target.GetComponent<EnemyMovement>().proectileSpeed = greenProjectileVelocity;
-			target.GetComponent<EnemyMovement>().projectileGlowSpeed = greenProjectileGlowSpeed;
-			target.GetComponent<EnemyMovement>().projectileDamage = greenProjectileDamage;
-			target.GetComponent<EnemyMovement>().projectileShotByEnemy = greenProjectileShotByEnemy;
-		}
-		else{
-			Debug.Log("ERROR! MAKE SURE YOUR SHIP'S TAG(COLOR) IS A LOWER-CASE STRING");
-			Debug.Log("ALSO DON'T CHANGE THE PUBLIC VARIABLE NAMES IN ENEMYMOVEMENT.CS");
-		}
-	}
-
 }

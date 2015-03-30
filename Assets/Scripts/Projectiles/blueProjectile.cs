@@ -6,9 +6,12 @@ public class blueProjectile : Projectile {
 		while (!GameManager.isLoaded) {
 			yield return null;
 		}
-		velocity = GameManager.blueProjectileVelocity;
+		velocity = GameManager.blueProjectileVelocity + new Vector2( 
+			Random.Range(-GameManager.blueProjectileVariance.x, GameManager.blueProjectileVariance.x), 
+			Random.Range(-GameManager.blueProjectileVariance.y, GameManager.blueProjectileVariance.y)
+		);
 		glowSpeed = GameManager.blueProjectileGlowSpeed;
 		damage = GameManager.blueProjectileDamage;
-		//shotByEnemy = GameManager.blueProjectileShotByEnemy;
+		loadedValues = true;
 	}
 }
