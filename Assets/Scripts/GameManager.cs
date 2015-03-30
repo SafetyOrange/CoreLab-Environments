@@ -221,4 +221,41 @@ public static class GameManager {
 		//this should be the last name of the file
 		isLoaded = true;
 	}
+
+	public static void dub(GameObject target, string tag){
+
+		if(tag == "red"){
+			target.GetComponent<EnemyMovement>().health = redEnemyHealth;
+			target.GetComponent<EnemyMovement>().proectileSpeed = redProjectileVelocity;
+			target.GetComponent<EnemyMovement>().projectileGlowSpeed = redProjectileGlowSpeed;
+			target.GetComponent<EnemyMovement>().projectileDamage = redProjectileDamage;
+			target.GetComponent<EnemyMovement>().projectileShotByEnemy = redProjectileShotByEnemy;
+		}
+		else if (tag == "blue"){
+			target.GetComponent<EnemyMovement>().health = blueEnemyHealth;
+			target.GetComponent<EnemyMovement>().proectileSpeed = blueProjectileVelocity;
+			target.GetComponent<EnemyMovement>().projectileGlowSpeed = blueProjectileGlowSpeed;
+			target.GetComponent<EnemyMovement>().projectileDamage = blueProjectileDamage;
+			target.GetComponent<EnemyMovement>().projectileShotByEnemy = blueProjectileShotByEnemy;
+		}
+		else if (tag == "yellow"){
+			target.GetComponent<EnemyMovement>().health = yellowEnemyHealth;
+			target.GetComponent<EnemyMovement>().proectileSpeed = yellowProjectileVelocity;
+			target.GetComponent<EnemyMovement>().projectileGlowSpeed = yellowProjectileGlowSpeed;
+			target.GetComponent<EnemyMovement>().projectileDamage = yellowProjectileDamage;
+			target.GetComponent<EnemyMovement>().projectileShotByEnemy = yellowProjectileShotByEnemy;
+		}
+		else if (tag == "green"){
+			target.GetComponent<EnemyMovement>().health = greenEnemyHealth;
+			target.GetComponent<EnemyMovement>().proectileSpeed = greenProjectileVelocity;
+			target.GetComponent<EnemyMovement>().projectileGlowSpeed = greenProjectileGlowSpeed;
+			target.GetComponent<EnemyMovement>().projectileDamage = greenProjectileDamage;
+			target.GetComponent<EnemyMovement>().projectileShotByEnemy = greenProjectileShotByEnemy;
+		}
+		else{
+			Debug.Log("ERROR! MAKE SURE YOUR SHIP'S TAG(COLOR) IS A LOWER-CASE STRING");
+			Debug.Log("ALSO DON'T CHANGE THE PUBLIC VARIABLE NAMES IN ENEMYMOVEMENT.CS");
+		}
+	}
+
 }

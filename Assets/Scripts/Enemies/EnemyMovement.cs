@@ -4,21 +4,29 @@ using System.Collections;
 public class EnemyMovement : MonoBehaviour {
 	//Enemy Variables
 	bool alive = false;
-	string type = "advance";
+	string shipClass = "advance";
 	float xSpeed = 0;
 	float ySpeed = 5;
-	float variance = Random.Range(0, Screen.height);
+	float variance = Random.Range(GameManager.minScreenBounds.x, GameManager.maxScreenBounds.x);
+
+	//variables that scrape data from GameManaager.dub()
+	public float health;
+	public Vector2 proectileSpeed;
+	public float projectileGlowSpeed;
+	public float projectileDamage;
+	public bool projectileShotByEnemy;
 
 	//External Variables
 	GameObject player;
 	
 	void Start () {
 		player = GameObject.FindGameObjectWithTag("Player");
+		GameManager.dub(this.gameObject, "red");					//Change this to access the different "Save-slots" for your customized enemies. Red, blue, green, and yellow"
 	}
 
 	void Update () {
 
-		switch(type){
+		switch(shipClass){
 
 		case "advance":
 			//Advance Enemy
