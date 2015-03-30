@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System;
 using System.Collections;
 
 public class ShipMovement : MonoBehaviour {
@@ -16,11 +18,13 @@ public class ShipMovement : MonoBehaviour {
 	public Transform explosion;
 
 	SpriteRenderer SpriteRenderR;
+	Text shipHealthDisplay;
 	float hitTime = .15f;
 	
 	void Start () {
 		StartCoroutine ("loadValues");
 		SpriteRenderR = GetComponent<SpriteRenderer> ();
+		shipHealthDisplay = GameObject.Find ("ShipHealthDisplay").GetComponent<Text> ();
 	}
 
 	IEnumerator loadValues() {
@@ -38,7 +42,7 @@ public class ShipMovement : MonoBehaviour {
 	void Update () {
 		checkInput();
 		screenWrap();
-		
+		updateUI ();
 	}
 
 	void checkInput(){
@@ -105,6 +109,10 @@ public class ShipMovement : MonoBehaviour {
 		}
 	}
 
+	void updateUI() {
+		shipHealthDisplay.text = Math.Round(health, 2).ToString ();
+	}
+
 	void fire(){
 		if (!firing) {
 			firing = true;
@@ -132,6 +140,8 @@ public class ShipMovement : MonoBehaviour {
 	}
 
 	void explode() {
+		health = 0;
+		updateUI ();
 		Instantiate (explosion, transform.position, transform.rotation);
 		Destroy (gameObject);
 		GameManager.restartRequired = true;
