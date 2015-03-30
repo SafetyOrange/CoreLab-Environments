@@ -30,25 +30,25 @@ public static class GameManager {
 		"shipShotGlowSpeed",
 		"shipRammingDamage",
 
-		"redProjectileVelocity",
-		"redProjectileGlowSpeed",
-		"redProjectileDamage",
-		"redProjectileVariance",
+		"aeroflotProjectileVelocity",
+		"aeroflotProjectileGlowSpeed",
+		"aeroflotProjectileDamage",
+		"aeroflotProjectileVariance",
 
-		"blueProjectileVelocity",
-		"blueProjectileGlowSpeed",
-		"blueProjectileDamage",
-		"blueProjectileVariance",
+		"billProjectileVelocity",
+		"billProjectileGlowSpeed",
+		"billProjectileDamage",
+		"billProjectileVariance",
 
-		"yellowProjectileVelocity",
-		"yellowProjectileGlowSpeed",
-		"yellowProjectileDamage",
-		"yellowProjectileVariance",
+		"carProjectileVelocity",
+		"carProjectileGlowSpeed",
+		"carProjectileDamage",
+		"carProjectileVariance",
 
-		"greenProjectileVelocity",
-		"greenProjectileGlowSpeed",
-		"greenProjectileDamage",
-		"greenProjectileVariance",
+		"keshaProjectileVelocity",
+		"keshaProjectileGlowSpeed",
+		"keshaProjectileDamage",
+		"keshaProjectileVariance",
 
 		"billEnemySpeed",
 		"billEnemyFireCooldownTime",
@@ -66,7 +66,13 @@ public static class GameManager {
 		"aeroflotEnemyHealth",
 		"aeroflotEnemyFireCooldownTime",
 		"aeroflotEnemyWrapScreen",
-		"aeroflotEnemyRammingDamage"
+		"aeroflotEnemyRammingDamage",
+
+		"carEnemySpeed",
+		"carEnemyHealth",
+		"carEnemyFireCooldownTime",
+		"carEnemyWrapScreen",
+		"carEnemyRammingDamage"
 	};
 	public static Vector2 backgroundScrollSpeed;
 	public static Vector2 shipSpeed;
@@ -118,7 +124,11 @@ public static class GameManager {
 	public static bool aeroflotEnemyWrapScreen;
 	public static float aeroflotEnemyRammingDamage;
 
-
+	public static Vector2 carEnemySpeed;
+	public static float carEnemyHealth;
+	public static float carEnemyFireCooldownTime;
+	public static bool carEnemyWrapScreen;
+	public static float carEnemyRammingDamage;
 	// --------------- // --------------- // --------------- Other Game State Variables
 	public static bool restartRequired = false;
 
@@ -179,55 +189,55 @@ public static class GameManager {
 					shipRammingDamage = float.Parse (fileSplit [index + 1]);
 					break;
 					// --------------- // --------------- // --------------- // --------------- // --------------- Projectile Variables
-				case "redProjectileVelocity":
+				case "aeroflotProjectileVelocity":
 					redProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
-				case "redProjectileGlowSpeed":
+				case "aeroflotProjectileGlowSpeed":
 					redProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
 					break;
-				case "redProjectileDamage":
+				case "aeroflotProjectileDamage":
 					redProjectileDamage = float.Parse (fileSplit [index + 1]);
 					break;
-				case "redProjectileVariance":
+				case "aeroflotProjectileVariance":
 					redProjectileVariance  = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
 
-				case "blueProjectileVelocity":
+				case "billProjectileVelocity":
 					blueProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
-				case "blueProjectileGlowSpeed":
+				case "billProjectileGlowSpeed":
 					blueProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
 					break;
-				case "blueProjectileDamage":
+				case "billProjectileDamage":
 					blueProjectileDamage = float.Parse (fileSplit [index + 1]);
 					break;
-				case "blueProjectileVariance":
+				case "billProjectileVariance":
 					blueProjectileVariance  = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
 
-				case "yellowProjectileVelocity":
+				case "carProjectileVelocity":
 					yellowProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
-				case "yellowProjectileGlowSpeed":
+				case "carProjectileGlowSpeed":
 					yellowProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
 					break;
-				case "yellowProjectileDamage":
+				case "carProjectileDamage":
 					yellowProjectileDamage = float.Parse (fileSplit [index + 1]);
 					break;
-				case "yellowProjectileVariance":
+				case "carProjectileVariance":
 					yellowProjectileVariance = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
 
-				case "greenProjectileVelocity":
+				case "keshaProjectileVelocity":
 					greenProjectileVelocity = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
-				case "greenProjectileGlowSpeed":
+				case "keshaProjectileGlowSpeed":
 					greenProjectileGlowSpeed = float.Parse (fileSplit [index + 1]);
 					break;
-				case "greenProjectileDamage":
+				case "keshaProjectileDamage":
 					greenProjectileDamage = float.Parse (fileSplit [index + 1]);
 					break;
-				case "greenProjectileVariance":
+				case "keshaProjectileVariance":
 					greenProjectileVariance = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
 					break;
 					// --------------- // --------------- // --------------- // --------------- // --------------- Enemy Variables
@@ -277,6 +287,21 @@ public static class GameManager {
 					break;
 				case "aeroflotEnemyRammingDamage":
 					billEnemyRammingDamage = float.Parse (fileSplit [index + 1]);
+					break;
+				case "carEnemySpeed":
+					carEnemySpeed = new Vector2 (float.Parse (fileSplit [index + 1]), float.Parse (fileSplit [index + 2]));
+					break;
+				case "carEnemyHealth":
+					carEnemyHealth = float.Parse (fileSplit [index + 1]);
+					break;
+				case "carEnemyFireCooldownTime":
+					carEnemyFireCooldownTime = float.Parse (fileSplit [index + 1]);
+					break;
+				case "carEnemyWrapScreen":
+					carEnemyWrapScreen = bool.Parse (fileSplit [index + 1]);
+					break;
+				case "carEnemyRammingDamage":
+					carEnemyRammingDamage = float.Parse (fileSplit [index + 1]);
 					break;
 					// --------------- // --------------- // --------------- // --------------- // --------------- Error Catching
 				default:
