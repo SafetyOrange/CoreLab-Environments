@@ -132,7 +132,7 @@ public class ShipMovement : MonoBehaviour {
 		//Debug.Log ("SHIP HIT! Health Left: " + health);
 		if (health <= 0) {
 			explode ();
-			Debug.Log("THIS IS WHERE YOU DIEEEEEEE");
+			//Debug.Log("THIS IS WHERE YOU DIEEEEEEE");
 		}
 	}
 	IEnumerator turnBackNormal () {
